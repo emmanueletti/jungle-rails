@@ -118,3 +118,34 @@ Processing by ProductsController#index as HTML
   [1m[36mCategory Load (0.7ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
   Rendered layouts/_top_nav.html.erb (60.4ms)
 Completed 200 OK in 10335ms (Views: 10232.9ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/" for 10.0.2.2 at 2021-08-19 19:41:18 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (4.1ms)[0m  SELECT "products".* FROM "products"  ORDER BY "products"."created_at" DESC
+  Rendered products/_product.html.erb (443.6ms)
+  Rendered products/index.html.erb within layouts/application (497.9ms)
+  [1m[36mCategory Load (0.8ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered layouts/_top_nav.html.erb (59.2ms)
+Completed 200 OK in 2333ms (Views: 2241.0ms | ActiveRecord: 9.0ms)
+
+
+Started GET "/" for 10.0.2.2 at 2021-08-19 19:41:22 +0000
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.4ms)[0m  SELECT "products".* FROM "products"  ORDER BY "products"."created_at" DESC
+  Rendered products/_product.html.erb (20.8ms)
+  Rendered products/index.html.erb within layouts/application (46.3ms)
+  [1m[36mCategory Load (0.6ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered layouts/_top_nav.html.erb (3.6ms)
+Completed 200 OK in 433ms (Views: 431.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 10.0.2.2 at 2021-08-19 19:41:22 +0000
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.5ms)[0m  SELECT "products".* FROM "products"  ORDER BY "products"."created_at" DESC
+  Rendered products/_product.html.erb (31.7ms)
+  Rendered products/index.html.erb within layouts/application (57.6ms)
+  [1m[36mCategory Load (0.4ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered layouts/_top_nav.html.erb (3.6ms)
+Completed 200 OK in 509ms (Views: 506.4ms | ActiveRecord: 0.8ms)
