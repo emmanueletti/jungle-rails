@@ -798,3 +798,150 @@ Processing by CartsController#show as HTML
   [1m[35mCategory Load (0.5ms)[0m  SELECT "categories".* FROM "categories"
   Rendered layouts/_top_nav.html.erb (2.4ms)
 Completed 200 OK in 284ms (Views: 281.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/cart" for 10.0.2.2 at 2021-08-19 21:00:42 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CartsController#show as HTML
+  [1m[35mProduct Load (1.6ms)[0m  SELECT "products".* FROM "products" WHERE "products"."id" IN (11, 8)
+  Rendered carts/_item.html.erb (464.0ms)
+  Rendered carts/_item.html.erb (3.1ms)
+  Rendered carts/show.html.erb within layouts/application (543.5ms)
+  [1m[36mCategory Load (0.8ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered layouts/_top_nav.html.erb (75.2ms)
+Completed 200 OK in 3755ms (Views: 3570.3ms | ActiveRecord: 7.3ms)
+
+
+Started GET "/" for 10.0.2.2 at 2021-08-19 21:01:26 +0000
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (1.9ms)[0m  SELECT "products".* FROM "products"  ORDER BY "products"."created_at" DESC
+  Rendered products/_product.html.erb (22.1ms)
+  Rendered products/index.html.erb within layouts/application (55.5ms)
+  [1m[36mCategory Load (0.5ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered layouts/_top_nav.html.erb (4.0ms)
+Completed 200 OK in 539ms (Views: 535.8ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/cart" for 10.0.2.2 at 2021-08-19 21:01:30 +0000
+Processing by CartsController#show as HTML
+  [1m[35mProduct Load (1.0ms)[0m  SELECT "products".* FROM "products" WHERE "products"."id" IN (11, 8)
+  Rendered carts/_item.html.erb (1.8ms)
+  Rendered carts/_item.html.erb (1.8ms)
+  Rendered carts/show.html.erb within layouts/application (67.2ms)
+  [1m[36mCategory Load (0.6ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered layouts/_top_nav.html.erb (5.4ms)
+Completed 200 OK in 735ms (Views: 728.5ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/cart" for 10.0.2.2 at 2021-08-19 21:05:37 +0000
+Processing by CartsController#show as HTML
+  [1m[35mProduct Load (0.9ms)[0m  SELECT "products".* FROM "products" WHERE "products"."id" IN (11, 8)
+  Rendered carts/_item.html.erb (5.6ms)
+  Rendered carts/_item.html.erb (3.9ms)
+  Rendered carts/show.html.erb within layouts/application (69.5ms)
+  [1m[36mCategory Load (0.6ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered layouts/_top_nav.html.erb (79.5ms)
+Completed 200 OK in 854ms (Views: 758.3ms | ActiveRecord: 8.8ms)
+
+
+Started GET "/" for 10.0.2.2 at 2021-08-19 21:05:43 +0000
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.6ms)[0m  SELECT "products".* FROM "products"  ORDER BY "products"."created_at" DESC
+  Rendered products/_product.html.erb (22.0ms)
+  Rendered products/index.html.erb within layouts/application (52.1ms)
+  [1m[36mCategory Load (0.8ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered layouts/_top_nav.html.erb (4.7ms)
+Completed 200 OK in 458ms (Views: 454.9ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/products/12" for 10.0.2.2 at 2021-08-19 21:05:45 +0000
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"12"}
+  [1m[35mProduct Load (0.5ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT 1  [["id", 12]]
+  [1m[36mCategory Load (0.5ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  Rendered products/show.html.erb within layouts/application (76.1ms)
+  [1m[35mCategory Load (0.7ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered layouts/_top_nav.html.erb (3.6ms)
+Completed 200 OK in 618ms (Views: 599.8ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/" for 10.0.2.2 at 2021-08-19 21:05:47 +0000
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.6ms)[0m  [1mSELECT "products".* FROM "products"  ORDER BY "products"."created_at" DESC[0m
+  Rendered products/_product.html.erb (20.0ms)
+  Rendered products/index.html.erb within layouts/application (53.9ms)
+  [1m[35mCategory Load (1.0ms)[0m  SELECT "categories".* FROM "categories"
+  Rendered layouts/_top_nav.html.erb (4.2ms)
+Completed 200 OK in 622ms (Views: 619.0ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/products/11" for 10.0.2.2 at 2021-08-19 21:05:48 +0000
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mProduct Load (0.6ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mCategory Load (0.8ms)[0m  SELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT 1  [["id", 3]]
+  Rendered products/show.html.erb within layouts/application (5.3ms)
+  [1m[36mCategory Load (0.6ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered layouts/_top_nav.html.erb (3.0ms)
+Completed 200 OK in 583ms (Views: 577.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/" for 10.0.2.2 at 2021-08-19 21:05:50 +0000
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (1.2ms)[0m  SELECT "products".* FROM "products"  ORDER BY "products"."created_at" DESC
+  Rendered products/_product.html.erb (43.8ms)
+  Rendered products/index.html.erb within layouts/application (85.9ms)
+  [1m[36mCategory Load (0.5ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered layouts/_top_nav.html.erb (3.4ms)
+Completed 200 OK in 661ms (Views: 658.6ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/cart" for 10.0.2.2 at 2021-08-19 21:05:51 +0000
+Processing by CartsController#show as HTML
+  [1m[35mProduct Load (2.1ms)[0m  SELECT "products".* FROM "products" WHERE "products"."id" IN (11, 8)
+  Rendered carts/_item.html.erb (3.1ms)
+  Rendered carts/_item.html.erb (7.6ms)
+  Rendered carts/show.html.erb within layouts/application (113.0ms)
+  [1m[36mCategory Load (4.3ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered layouts/_top_nav.html.erb (11.1ms)
+Completed 200 OK in 1190ms (Views: 1176.7ms | ActiveRecord: 6.4ms)
+
+
+Started GET "/cart" for 10.0.2.2 at 2021-08-19 21:05:53 +0000
+Processing by CartsController#show as HTML
+  [1m[35mProduct Load (0.6ms)[0m  SELECT "products".* FROM "products" WHERE "products"."id" IN (11, 8)
+  Rendered carts/_item.html.erb (13.7ms)
+  Rendered carts/_item.html.erb (4.5ms)
+  Rendered carts/show.html.erb within layouts/application (286.8ms)
+  [1m[36mCategory Load (0.6ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered layouts/_top_nav.html.erb (3.5ms)
+Completed 200 OK in 996ms (Views: 992.9ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/cart" for 10.0.2.2 at 2021-08-19 21:06:19 +0000
+Processing by CartsController#show as HTML
+  [1m[35mProduct Load (0.7ms)[0m  SELECT "products".* FROM "products" WHERE "products"."id" IN (11, 8)
+  Rendered carts/_item.html.erb (4.6ms)
+  Rendered carts/_item.html.erb (4.8ms)
+  Rendered carts/show.html.erb within layouts/application (86.6ms)
+  [1m[36mCategory Load (0.9ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered layouts/_top_nav.html.erb (4.9ms)
+Completed 200 OK in 698ms (Views: 692.4ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/cart/add_item?product_id=8" for 10.0.2.2 at 2021-08-19 21:06:24 +0000
+Processing by CartsController#add_item as HTML
+  Parameters: {"authenticity_token"=>"NEYulkKz+JA0YhosuKh0U31MgdLGmeYagjwtT6+9IwiUl7fCSTXsjSd+OrxVuMl5zAWuBoi8lYBRk5t189mdng==", "product_id"=>"8"}
+Redirected to http://localhost:3000/cart
+Completed 302 Found in 4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/cart" for 10.0.2.2 at 2021-08-19 21:06:24 +0000
+Processing by CartsController#show as HTML
+  [1m[35mProduct Load (0.7ms)[0m  SELECT "products".* FROM "products" WHERE "products"."id" IN (11, 8)
+  Rendered carts/_item.html.erb (4.0ms)
+  Rendered carts/_item.html.erb (2.2ms)
+  Rendered carts/show.html.erb within layouts/application (77.7ms)
+  [1m[36mCategory Load (0.5ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered layouts/_top_nav.html.erb (3.2ms)
+Completed 200 OK in 701ms (Views: 694.8ms | ActiveRecord: 1.3ms)
