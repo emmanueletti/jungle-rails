@@ -1,0 +1,120 @@
+  [1m[36m (5137.9ms)[0m  [1mDROP DATABASE IF EXISTS "jungle_development"[0m
+  [1m[35m (119.2ms)[0m  DROP DATABASE IF EXISTS "jungle_test"
+  [1m[36m (0.5ms)[0m  [1mCREATE DATABASE "jungle_development" ENCODING = 'unicode'[0m
+  [1m[35m (425.1ms)[0m  CREATE DATABASE "jungle_test" ENCODING = 'unicode'
+  [1m[36mSQL (2.1ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (14.2ms)[0m  DROP TABLE "categories" CASCADE
+  [1m[36m (19.7ms)[0m  [1mCREATE TABLE "categories" ("id" serial primary key, "name" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (2.8ms)[0m  DROP TABLE "line_items" CASCADE
+  [1m[36m (6.8ms)[0m  [1mCREATE TABLE "line_items" ("id" serial primary key, "order_id" integer, "product_id" integer, "quantity" integer, "item_price_cents" integer, "total_price_cents" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (2.9ms)[0m  CREATE  INDEX  "index_line_items_on_order_id" ON "line_items" USING btree ("order_id")
+  [1m[36m (3.0ms)[0m  [1mCREATE  INDEX  "index_line_items_on_product_id" ON "line_items" USING btree ("product_id")[0m
+  [1m[35m (2.3ms)[0m  DROP TABLE "orders" CASCADE
+  [1m[36m (6.8ms)[0m  [1mCREATE TABLE "orders" ("id" serial primary key, "total_cents" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "stripe_charge_id" character varying, "email" character varying) [0m
+  [1m[35m (1.7ms)[0m  DROP TABLE "products" CASCADE
+  [1m[36m (8.2ms)[0m  [1mCREATE TABLE "products" ("id" serial primary key, "name" character varying, "description" text, "image" character varying, "price_cents" integer, "quantity" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "category_id" integer) [0m
+  [1m[35m (4.8ms)[0m  CREATE  INDEX  "index_products_on_category_id" ON "products" USING btree ("category_id")
+  [1m[36m (11.2ms)[0m  [1mALTER TABLE "line_items" ADD CONSTRAINT "fk_rails_2dc2e5c22c"
+FOREIGN KEY ("order_id")
+  REFERENCES "orders" ("id")
+[0m
+  [1m[35m (3.9ms)[0m  ALTER TABLE "line_items" ADD CONSTRAINT "fk_rails_11e15d5c6b"
+FOREIGN KEY ("product_id")
+  REFERENCES "products" ("id")
+
+  [1m[36m (4.7ms)[0m  [1mALTER TABLE "products" ADD CONSTRAINT "fk_rails_fb915499a4"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+[0m
+  [1m[35m (0.6ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (10.5ms)[0m  CREATE TABLE "categories" ("id" serial primary key, "name" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (3.4ms)[0m  [1mCREATE TABLE "line_items" ("id" serial primary key, "order_id" integer, "product_id" integer, "quantity" integer, "item_price_cents" integer, "total_price_cents" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (2.5ms)[0m  CREATE  INDEX  "index_line_items_on_order_id" ON "line_items" USING btree ("order_id")
+  [1m[36m (2.3ms)[0m  [1mCREATE  INDEX  "index_line_items_on_product_id" ON "line_items" USING btree ("product_id")[0m
+  [1m[35m (6.2ms)[0m  CREATE TABLE "orders" ("id" serial primary key, "total_cents" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "stripe_charge_id" character varying, "email" character varying) 
+  [1m[36m (4.8ms)[0m  [1mCREATE TABLE "products" ("id" serial primary key, "name" character varying, "description" text, "image" character varying, "price_cents" integer, "quantity" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "category_id" integer) [0m
+  [1m[35m (2.2ms)[0m  CREATE  INDEX  "index_products_on_category_id" ON "products" USING btree ("category_id")
+  [1m[36m (2.4ms)[0m  [1mALTER TABLE "line_items" ADD CONSTRAINT "fk_rails_2dc2e5c22c"
+FOREIGN KEY ("order_id")
+  REFERENCES "orders" ("id")
+[0m
+  [1m[35m (1.6ms)[0m  ALTER TABLE "line_items" ADD CONSTRAINT "fk_rails_11e15d5c6b"
+FOREIGN KEY ("product_id")
+  REFERENCES "products" ("id")
+
+  [1m[36m (1.6ms)[0m  [1mALTER TABLE "products" ADD CONSTRAINT "fk_rails_fb915499a4"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+[0m
+  [1m[35m (2.7ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (3.3ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.7ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160625062916')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160621152728')
+  [1m[36m (1.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160621153855')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160621153741')
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160623222000')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160622113553')
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160623110200')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mCategory Load (0.9ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."name" = $1 LIMIT 1[0m  [["name", "Apparel"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Apparel"], ["created_at", "2021-08-19 19:32:05.433787"], ["updated_at", "2021-08-19 19:32:05.433787"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."name" = $1 LIMIT 1[0m  [["name", "Electronics"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Electronics"], ["created_at", "2021-08-19 19:32:05.439039"], ["updated_at", "2021-08-19 19:32:05.439039"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mCategory Load (0.8ms)[0m  [1mSELECT  "categories".* FROM "categories" WHERE "categories"."name" = $1 LIMIT 1[0m  [["name", "Furniture"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Furniture"], ["created_at", "2021-08-19 19:32:05.445919"], ["updated_at", "2021-08-19 19:32:05.445919"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36mProduct Load (0.8ms)[0m  [1mSELECT "products".* FROM "products"[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "products" ("name", "description", "image", "quantity", "price_cents", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Men's Classy shirt"], ["description", "Crucifix sartorial selvage ethical etsy authentic. Banh mi kinfolk vegan migas biodiesel swag fap 3 wolf moon. Xoxo kickstarter letterpress gastropub. Art party occupy small batch five dollar toast."], ["image", "apparel1.jpg"], ["quantity", 10], ["price_cents", 6499], ["category_id", 1], ["created_at", "2021-08-19 19:32:06.306264"], ["updated_at", "2021-08-19 19:32:06.306264"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "products" ("name", "description", "image", "quantity", "price_cents", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["name", "Women's Zebra pants"], ["description", "Kombucha butcher cray. Keytar try-hard etsy flexitarian fashion axe viral pitchfork forage. Authentic echo tousled cornhole try-hard. Distillery sustainable carry. Offal tumblr listicle blue bottle ennui. Sriracha mlkshk health street brooklyn."], ["image", "apparel2.jpg"], ["quantity", 18], ["price_cents", 12499], ["category_id", 1], ["created_at", "2021-08-19 19:32:06.576022"], ["updated_at", "2021-08-19 19:32:06.576022"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "products" ("name", "description", "image", "quantity", "price_cents", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Hipster Hat"], ["description", "Williamsburg mumblecore cornhole gastropub +1 deep v pbr&b keytar. Yr messenger bag tousled venmo. Migas lo-fi cliche street listicle meditation 3 wolf moon. Tattooed chambray bicycle rights post-ironic tacos yolo meggings. Intelligentsia wes anderson narwhal hammock paleo 90's shabby chic vinyl. Cliche tumblr health."], ["image", "apparel3.jpg"], ["quantity", 4], ["price_cents", 3449], ["category_id", 1], ["created_at", "2021-08-19 19:32:06.870003"], ["updated_at", "2021-08-19 19:32:06.870003"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "products" ("name", "description", "image", "quantity", "price_cents", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["name", "Hipster Socks"], ["description", "Carry gastropub organic. Plaid umami iphone mlkshk direct trade shoreditch bespoke. Cleanse thundercats literally kitsch. Pickled austin aesthetic flannel photo booth venmo try-hard blue bottle. Goth bicycle rights deep v tattooed gluten-free humblebrag iphone swag. Chicharrones marfa art party everyday banh mi franzen semiotics."], ["image", "apparel4.jpg"], ["quantity", 8], ["price_cents", 2500], ["category_id", 1], ["created_at", "2021-08-19 19:32:07.404887"], ["updated_at", "2021-08-19 19:32:07.404887"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "products" ("name", "description", "image", "quantity", "price_cents", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Russian Spy Shoes"], ["description", "Intelligentsia typewriter farm-to-table narwhal. Pabst bicycle rights keytar irony 3 wolf moon twee. Ethical chartreuse fashion axe ramps whatever. Bushwick xoxo jean shorts kale chips health kogi heirloom yr."], ["image", "apparel5.jpg"], ["quantity", 8], ["price_cents", 122500], ["category_id", 1], ["created_at", "2021-08-19 19:32:07.822556"], ["updated_at", "2021-08-19 19:32:07.822556"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "products" ("name", "description", "image", "quantity", "price_cents", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["name", "Human Feet Shoes"], ["description", "Pickled master hashtag put a bird on it. Roof viral deep v kinfolk iphone banh mi hashtag. Ennui salvia tilde. Squid keffiyeh drinking put a bird on it. Authentic 90's waistcoat food truck pop-up sriracha kinfolk keytar. Butcher pug cleanse narwhal meggings."], ["image", "apparel6.jpg"], ["quantity", 82], ["price_cents", 22450], ["category_id", 1], ["created_at", "2021-08-19 19:32:08.156710"], ["updated_at", "2021-08-19 19:32:08.156710"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "products" ("name", "description", "image", "quantity", "price_cents", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Modern Skateboards"], ["description", "Occupy tote bag scenester meggings thundercats tofu. Selvage vinegar microdosing banjo cardigan dreamcatcher 3 wolf moon. Deep v meh sartorial xoxo blue bottle forage before they sold out. Food truck cray synth paleo kombucha kinfolk."], ["image", "electronics1.jpg"], ["quantity", 40], ["price_cents", 16449], ["category_id", 2], ["created_at", "2021-08-19 19:32:08.443954"], ["updated_at", "2021-08-19 19:32:08.443954"]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "products" ("name", "description", "image", "quantity", "price_cents", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["name", "Hotdog Slicer"], ["description", "Cornhole stumptown fixie bitters knausgaard. Shabby chic fanny pack yr keffiyeh venmo. Food truck chillwave pour-over put a bird on it plaid. Vhs chartreuse health kogi."], ["image", "electronics2.jpg"], ["quantity", 3], ["price_cents", 2600], ["category_id", 2], ["created_at", "2021-08-19 19:32:08.802538"], ["updated_at", "2021-08-19 19:32:08.802538"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "products" ("name", "description", "image", "quantity", "price_cents", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "World's Largest Smartwatch"], ["description", "Drinking truffaut ugh. Literally mlkshk forage migas disrupt bicycle rights craft beer. Semiotics messenger bag ethical banjo freegan umami put a bird on it. Next level you probably haven't heard of them flannel pop-up. Portland readymade +1 before they sold out lumbersexual. Drinking deep v pbr&b pitchfork readymade mustache asymmetrical helvetica."], ["image", "electronics3.jpg"], ["quantity", 32], ["price_cents", 202629], ["category_id", 2], ["created_at", "2021-08-19 19:32:09.096570"], ["updated_at", "2021-08-19 19:32:09.096570"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "products" ("name", "description", "image", "quantity", "price_cents", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["name", "Optimal Sleeping Bed"], ["description", "Scenester listicle flannel knausgaard mumblecore. Gentrify chicharrones yuccie ennui keytar. Brooklyn semiotics gentrify ethical. Tousled banh mi williamsburg kogi gluten-free. Whatever vegan franzen."], ["image", "furniture1.jpg"], ["quantity", 320], ["price_cents", 305200], ["category_id", 3], ["created_at", "2021-08-19 19:32:09.365286"], ["updated_at", "2021-08-19 19:32:09.365286"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "products" ("name", "description", "image", "quantity", "price_cents", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Electric Chair"], ["description", "Tousled wolf kickstarter asymmetrical cornhole. Actually post-ironic cred humblebrag. Heirloom craft beer tumblr banjo irony synth. Mlkshk +1 tousled bitters pop-up vhs kale chips normcore. Single-origin coffee kale chips marfa shabby chic carry post-ironic freegan brunch. Tote bag schlitz meditation sriracha tousled franzen williamsburg fingerstache."], ["image", "furniture2.jpg"], ["quantity", 2], ["price_cents", 98765], ["category_id", 3], ["created_at", "2021-08-19 19:32:09.664592"], ["updated_at", "2021-08-19 19:32:09.664592"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "products" ("name", "description", "image", "quantity", "price_cents", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["name", "Red Bookshelf"], ["description", "Vinyl waistcoat sartorial skateboard yuccie wolf. 90's polaroid authentic. Tattooed bushwick poutine. Listicle selfies before they sold out franzen roof. Photo booth shoreditch kitsch. Disrupt paleo vinyl celiac fixie."], ["image", "furniture3.jpg"], ["quantity", 23], ["price_cents", 248375], ["category_id", 3], ["created_at", "2021-08-19 19:32:10.042550"], ["updated_at", "2021-08-19 19:32:10.042550"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/" for 10.0.2.2 at 2021-08-19 19:37:04 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.8ms)[0m  SELECT "products".* FROM "products"  ORDER BY "products"."created_at" DESC
+  Rendered products/_product.html.erb (434.7ms)
+  Rendered products/index.html.erb within layouts/application (488.5ms)
+  [1m[36mCategory Load (0.7ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered layouts/_top_nav.html.erb (60.4ms)
+Completed 200 OK in 10335ms (Views: 10232.9ms | ActiveRecord: 4.8ms)
