@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  
+  # user auth - logging in, logging out
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
+  
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
 
   root to: 'products#index'
 
