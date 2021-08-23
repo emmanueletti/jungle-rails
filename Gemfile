@@ -3,7 +3,7 @@ ruby "2.3.5"
 
 # Use .env file for environment variables
 # https://github.com/bkeepers/dotenv
-gem 'dotenv-rails', groups: [:development, :test]
+# gem 'dotenv-rails', groups: [:development, :test]
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
@@ -48,6 +48,7 @@ group :development, :test do
   gem 'byebug'
   gem 'quiet_assets'
   gem 'dotenv-rails'
+  gem 'rspec-rails', '~> 3.5'
 end
 
 group :development do
