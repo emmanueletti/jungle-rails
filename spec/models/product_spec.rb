@@ -10,8 +10,7 @@ RSpec.describe Product, type: :model do
 
   # delete category dependency
   after(:each) do
-    test_category = Category.find_by(name: 'test')
-    test_category.destroy
+    test_category = Category.find_by(name: 'test').destroy
   end
 
   describe 'Saves' do
@@ -22,11 +21,8 @@ RSpec.describe Product, type: :model do
       product.price = 200
       product.quantity = 2
       product.category_id = Category.find_by(name: 'test').id
-      product.save!
-
-      newest_product = Product.order('created_at').last
-
-      expect(newest_product.name).to eq('test product')
+      
+      expect(product.save).to be true
       expect(product.errors).to be_empty
     end
   end
@@ -39,7 +35,7 @@ RSpec.describe Product, type: :model do
         product.quantity = 2
         product.category_id = Category.find_by(name: 'test').id
         
-        expect(product.save).to eq(false)
+        expect(product.save).to be false
         expect(product.errors.messages).to have_key(:name)
       end
 
@@ -50,7 +46,7 @@ RSpec.describe Product, type: :model do
         product.quantity = 2
         product.category_id = Category.find_by(name: 'test').id
         
-        expect(product.save).to eq(false)
+        expect(product.save).to be false
         expect(product.errors.messages).to have_key(:price)
       end
       
@@ -61,7 +57,7 @@ RSpec.describe Product, type: :model do
         product.quantity = nil
         product.category_id = Category.find_by(name: 'test').id
         
-        expect(product.save).to eq(false)
+        expect(product.save).to be false
         expect(product.errors.messages).to have_key(:quantity)
       end
       
@@ -72,9 +68,8 @@ RSpec.describe Product, type: :model do
         product.quantity = 2
         product.category_id = nil
         
-        expect(product.save).to eq(false)
+        expect(product.save).to be false
         expect(product.errors.messages).to have_key(:category)
       end
     end
-    
 end
