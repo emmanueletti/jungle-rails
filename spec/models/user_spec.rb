@@ -12,9 +12,6 @@ RSpec.describe User, type: :model do
 
       expect(user.save).to be true
       expect(user.errors).to be_empty
-      clean_up = User.find_by(email: 'test@gmail.com').destroy
-      # test_category = Category.find_by(name: 'test').destroy
-
     end
 
     it 'does not save if password and password confirmation do not match' do 
@@ -45,7 +42,6 @@ RSpec.describe User, type: :model do
 
       expect(test_user.save).to be false
       expect(test_user.errors.messages[:email]).to eq(['has already been taken'])
-      clean_up = User.find_by(email: 'TEST@TEST.com').destroy
     end
 
     it 'does not save and gives an error if email is not provided' do 
@@ -84,15 +80,12 @@ RSpec.describe User, type: :model do
 
 
    describe '.authenticate_with_credentials' do
-    # returns nil if user not found
     it 'should return nil if user is not found' do 
       user = User.authenticate_with_credentials('no_such_user@gmail.com', '123456789abcde')
       expect(user).to be_nil
     end
 
-    # returns nil if password incorrect
     it 'returns nil if password is incorrect' do
-      # establish pre-existing user
       pre_existing_user = User.new
       pre_existing_user.name = 'John'
       pre_existing_user.email = 'TEST@TEST.com'
@@ -102,12 +95,9 @@ RSpec.describe User, type: :model do
 
       user = User.authenticate_with_credentials('TEST@TEST.com', 'wrong password')
       expect(user).to be_nil
-      clean_up = User.find_by(email: 'TEST@TEST.com').destroy
     end
 
-    # returns user if user found and password is correct 
      it 'returns user if user found and password is correct' do
-      # establish pre-existing user
       pre_existing_user = User.new
       pre_existing_user.name = 'John'
       pre_existing_user.email = 'TEST@TEST.com'
@@ -117,7 +107,6 @@ RSpec.describe User, type: :model do
 
       user = User.authenticate_with_credentials('TEST@TEST.com', '123456789abcde')
       expect(user.email).to eq('TEST@TEST.com')
-      clean_up = User.find_by(email: 'TEST@TEST.com').destroy
     end
    end
 end
