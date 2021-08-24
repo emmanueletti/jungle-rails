@@ -1,21 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
-  # create category dependency
+  # setup - create category dependency
+  # rspec handles clean up
   before(:each) do
     test_category = Category.new
     test_category.name = 'test'
     test_category.save
   end
 
-  # delete category dependency
-  after(:each) do
-    test_category = Category.find_by(name: 'test').destroy
-  end
-
   describe 'Saves' do
     it 'should save when all fields are correctly given with no errors' do 
-
       product = Product.new
       product.name = 'test product'
       product.price = 200
